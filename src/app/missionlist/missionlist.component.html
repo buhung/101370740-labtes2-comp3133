@@ -1,0 +1,33 @@
+<mat-card>
+    <mat-card-title>SpaceX Launches</mat-card-title>
+
+    <mat-table [dataSource]="launches" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="mission_name">
+        <mat-header-cell *matHeaderCellDef> Mission Name </mat-header-cell>
+        <mat-cell *matCellDef="let launch"> {{launch.mission_name}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="launch_year">
+        <mat-header-cell *matHeaderCellDef> Launch Year </mat-header-cell>
+        <mat-cell *matCellDef="let launch"> {{launch.launch_year}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="mission_patch">
+        <mat-header-cell *matHeaderCellDef> Patch </mat-header-cell>
+        <mat-cell *matCellDef="let launch"> 
+            <img [src]="launch.mission_patch_small" alt="Mission Patch" style="max-width: 50px;">
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="details">
+        <mat-header-cell *matHeaderCellDef> Details </mat-header-cell>
+        <mat-cell *matCellDef="let launch"> 
+          <button mat-button [routerLink]="['/missiondetails', launch.flight_number]">View</button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+ </mat-card>
